@@ -16,6 +16,7 @@
 #' example of a time series data
 "mirna_ex_rse"
 
+#' @name mirTritation
 #' Data frame containing mirna from XX paper
 #'
 #' @format mirna expression data in long format.

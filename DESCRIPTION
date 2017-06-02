@@ -5,7 +5,6 @@ Type: Package
 Title: Analyze isomiRs and miRNAs from small RNA-seq
 Description: Characterization of miRNAs and isomiRs, clustering and
    differential expression.
-LazyData: true
 biocViews: miRNA, RNASeq,
     DifferentialExpression, Clustering
 Suggests:
@@ -19,14 +18,10 @@ Suggests:
 Depends:
     R (>= 3.4),
     DiscriMiner,
-    IRanges,
-    S4Vectors (>= 0.9.25),
-    GenomicRanges,
-    SummarizedExperiment (>= 1.1.6),
-    TMB (>= 1.7.6),
+    TMB,
     RcppEigen
 Imports:
-    BiocGenerics (>= 0.7.5),
+    BiocGenerics,
     DESeq2,
     reshape,
     tidyr,
@@ -45,7 +40,11 @@ Imports:
     stats,
     GGally,
     gamlss,
-    gamlss.dist
+    gamlss.dist,
+    IRanges,
+    S4Vectors,
+    GenomicRanges,
+    SummarizedExperiment
 Author: Lorena Pantano, Georgia Escaramis
 Maintainer: Lorena Pantano <lorena.pantano@gmail.com>
 License: MIT + file LICENSE
