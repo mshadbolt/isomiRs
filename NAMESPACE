@@ -62,3 +62,5 @@ import(grDevices)
 importFrom("graphics", "pairs")
 importFrom("stats", "as.dist", "as.hclust", "cutree", "dist", "hclust",
            "dnorm", "pnorm", "predict", "qnorm", "rnorm")
+import(TMB)
+useDynLib(LQNO_DE, .registration = TRUE)

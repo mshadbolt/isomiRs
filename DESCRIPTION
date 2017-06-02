@@ -22,7 +22,8 @@ Depends:
     IRanges,
     S4Vectors (>= 0.9.25),
     GenomicRanges,
-    SummarizedExperiment (>= 1.1.6)
+    SummarizedExperiment (>= 1.1.6),
+    TMB (>= 1.7.6)
 Imports:
     BiocGenerics (>= 0.7.5),
     DESeq2,
@@ -49,4 +50,5 @@ Maintainer: Lorena Pantano <lorena.pantano@gmail.com>
 License: MIT + file LICENSE
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
-NeedsCompilation: no
+NeedsCompilation: yes
+LinkingTo: TMB, Rcpp
