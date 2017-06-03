@@ -1,7 +1,0 @@
-all: LQNO_DE.so
-
-LQNO_DE.so: LQNO_DE.cpp
-	Rscript --vanilla -e "TMB::compile('LQNO_DE.cpp')"
-
-clean:
-	rm -rf *o

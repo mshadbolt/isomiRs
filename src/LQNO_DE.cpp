@@ -1,4 +1,5 @@
 // Illustrate map feature of TMB to perform likelihood ratio tests on a nRNAged array dataset.
+#define TMB_LIB_INIT R_init_isomiRs
 #include <TMB.hpp>
 // LQNO regression family for the estimation of bias factors
 
