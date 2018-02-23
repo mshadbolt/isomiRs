@@ -6,7 +6,7 @@
 #' miRNA/isomiR analysis. This class stores all raw isomiRs
 #' data for each sample, processed information,
 #' summary for each isomiR type,
-#' raw counts, normalized counts, and table with
+#' raw counts, normalized counts, and a table with
 #' experimental information for each sample.
 #'
 #' [IsomirDataSeqFromFiles] creates this object using seqbuster
@@ -24,52 +24,59 @@
 #'
 #' `metadata` contains two lists: `rawList` is a list with same
 #' length than number of samples and stores the input files
-#' for each sample; `isoList` is a list with same length than
+#' for each sample; `isoList` is a list with same length as
 #' number of samples and stores information for each isomiR type summarizing
 #' the different changes for the different isomiRs (trimming at 3',
 #' trimming a 5', addition and substitution). For instance, you can get
 #' the data stored in `isoList` for sample 1 and 5' changes
 #' with this code `metadata(ids)[['isoList']][[1]]$t5sum`.
 #'
-#' The naming of isomiRs follows these rules:
-#'
-#' * miRNA name
-#' * type:ref if the sequence is the same than the miRNA reference.
+#' The naming of isomiRs follows this structure
+#' `miRNAName.type.t5:VAR.t3:VAR.ad:VAR.mm:VAR` where the VAR 
+#' naming is explained below: 
+#' * type:`ref` if the sequence is the same as the miRNA reference.
 #' `iso` if the sequence has variations.
-#' * `t5 tag`:indicates variations at 5 position.
-#' The naming contains two words: `direction - nucleotides`,
-#' where direction can be UPPER CASE NT
-#' (changes upstream of the 5 reference position) or
-#' LOWER CASE NT (changes downstream of the 5 reference position).
-#' `0` indicates no variation, meaning the 5 position is
-#' the same than the reference. After `direction`,
-#' it follows the nucleotide/s that are added (for upstream changes)
-#'  or deleted (for downstream changes).
-#' * `t3 tag`:indicates variations at 3 position.
-#' The naming contains two words: `direction - nucleotides`,
-#' where direction can be LOWER CASE NT
-#' (upstream of the 3 reference position) or
-#' UPPER CASE NT (downstream of the 3 reference position).
-#' `0` indicates no variation, meaning the 3 position is
-#' the same than the reference. After `direction`,
-#' it follows the nucleotide/s that are added (for downstream changes)
-#' or deleted (for upstream chanes).
-#' * `ad tag`:indicates nucleotides additions at 3 position.
-#' The naming contains two words: `direction - nucleotides`,
-#' where direction is UPPER CASE NT
-#' (upstream of the 5 reference position).
-#' `0` indicates no variation, meaning the 3 position
-#' has no additions. After `direction`,
-#' it follows the nucleotide/s that are added.
-#' * `mm tag`: indicates nucleotides substitutions along
-#' the sequences. The naming contains three words:
-#' `position-nucleotideATsequence-nucleotideATreference`.
-#' * `seed tag`: same than `mm` tag,
-#' but only if the change happens between nucleotide 2 and 8.
+#' * `t5 tag`:indicates templated variations at the 5' end.
+#' The naming contains three pieces of information: 
+#' 1. The position of the change, i.e. `t5`
+#' 2. Whether the change is upstream or downstream
+#' 3. The nucleotides involved
+#' Direction is implied by the case of the nucleotides.
+#' Lower case nucleotides indicate a trimming event
+#' (upstream of the 5' reference position)
+#' UPPER CASE nucleotides indicate an addition event 
+#' (downstream of the 5' reference position).
+#' `0` indicates no variation, meaning the 5' position is
+#' the same as the reference. After the `t5` tag,
+#' the nucleotide/s that are added (for upstream changes)
+#'  or deleted (for downstream changes) follow.
+#' * `t3 tag`:indicates templated variations at the 3' end.
+#' The naming contains three pieces of information: 
+#' 1. The position of the change, i.e. `t3`
+#' 2. Whether the change is upstream or downstream
+#' 3. The nucleotides involved
+#' Direction is implied by the case of the nucleotides.
+#' Lower case nucleotides indicate a trimming event
+#' (upstream of the 3' reference position)
+#' UPPER CASE nucleotides indicate an addition event 
+#' (downstream of the 3' reference position).
+#' `0` indicates no variation, meaning the 5' position is
+#' the same as the reference. After the `t5` tag,
+#' the nucleotide/s that are added (for upstream changes)
+#'  or deleted (for downstream changes) follow.
+#' * `ad tag`:indicates untemplated nucleotide additions at  
+#' the 3' position.
+#' The naming follows the same naming conventions as for
+#' `t3` above.
+#' * `mm tag`: indicates nucleotide substitutions along
+#' the sequences. The naming contains three characters:
+#' `position-nucleotideINsequencingread-nucleotideATreference`.
+#' * `seed tag`: same as `mm` tag,
+#' but only if the change happens between nucleotides 2 and 8.
 #'
-#' In general nucleotides in UPPER case mean insertions respect
-#' to the reference sequence, and nucleotides in LOWER case
-#' mean deletions respect to the reference sequence.
+#' In general nucleotides in UPPER case mean insertions with respect
+#' to the reference sequence, and nucleotides in lower case
+#' mean deletions with respect to the reference sequence.
 #'
 #' @aliases IsomirDataSeq-class
 #' @examples
